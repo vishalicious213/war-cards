@@ -77,3 +77,11 @@ span {
 .no-click {
   pointer-events: none;
 }
+
+.player-info {
+  text-align: center;
+}
+
+.player-info span {
+  display: block;
+}

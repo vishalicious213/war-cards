@@ -1,7 +1,11 @@
 let deckId = ""
 
+// ⬇️ EVENT LISTENERS ⬇️
+
 document.querySelector('#deal').addEventListener('click', drawTwo)
 document.querySelector('#over').addEventListener('click', newGame)
+
+// ⬇️ EVENT HANDLERS ⬇️
 
 function getDeckId() {
   fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
@@ -40,6 +44,10 @@ function drawTwo(){
       console.log(`error ${err}`)
     })
 }
+
+// ⬇️ RENDER FUNCTIONS ⬇️
+
+// ⬇️ HELPER FUNCTIONS ⬇️
 
 function convertToNum(val) {
   if (val === "ACE") {
