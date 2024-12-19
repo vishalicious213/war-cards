@@ -22,8 +22,8 @@ function drawTwo(){
   fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
     .then(res => res.json())
     .then(data => {
-      document.querySelector("#player1").src = data.cards[0].image
-      document.querySelector("#player2").src = data.cards[1].image
+      renderCards(data.cards[0].image, data.cards[0].image)
+      
       let player1Val = convertToNum(data.cards[0].value)
       let player2Val = convertToNum(data.cards[1].value)
 
@@ -46,6 +46,11 @@ function drawTwo(){
 }
 
 // ⬇️ RENDER FUNCTIONS ⬇️
+
+function renderCards(player1card, player2card) {
+  document.querySelector("#player1").src = player1card
+  document.querySelector("#player2").src = player2card
+}
 
 // ⬇️ HELPER FUNCTIONS ⬇️
 
