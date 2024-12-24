@@ -7,6 +7,7 @@ document.querySelector('#over').addEventListener('click', newGame)
 
 // ⬇️ EVENT HANDLERS ⬇️
 
+// get a deckID from API to manage cards for game
 function getDeckId() {
   fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
     .then(res => res.json())
@@ -18,6 +19,7 @@ function getDeckId() {
     })
 }
 
+// draw a card for each player and play a round
 function drawTwo(){
   fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
     .then(res => res.json())
@@ -36,11 +38,13 @@ function drawTwo(){
 
 // ⬇️ RENDER FUNCTIONS ⬇️
 
+// display cards in player areas
 function renderCards(player1card, player2card) {
   document.querySelector("#player1").src = player1card
   document.querySelector("#player2").src = player2card
 }
 
+// use card values to render game updates per round
 function renderGame(player1Val, player2Val) {
   if (player1Val > player2Val) {
     document.querySelector("h2").innerText = `Player 1 Wins`
