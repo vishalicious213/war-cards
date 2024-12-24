@@ -49,24 +49,28 @@ function drawTwo(){
 
 // draw 4 cards for each player and play a round
 function drawWar(){
-  fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=8`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data.cards)
-      let cards = data.cards.map(card => card.image)
-      document.querySelector("#war").classList.add("hide")
-      renderWarCards(cards)
-      
-      let player1Val = convertToNum(data.cards[3].value)
-      let player2Val = convertToNum(data.cards[7].value)
-      remaining = data.remaining
-      isWar = true
-
-      renderGame(player1Val, player2Val)
-    })
-    .catch(err => {
-      console.log(`error ${err}`)
-    })
+  if (remaining < 8) {
+    console.log("NOT ENOUGH CARDS", remaining)
+  } else {
+    fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=8`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.cards)
+        let cards = data.cards.map(card => card.image)
+        document.querySelector("#war").classList.add("hide")
+        renderWarCards(cards)
+        
+        let player1Val = convertToNum(data.cards[3].value)
+        let player2Val = convertToNum(data.cards[7].value)
+        remaining = data.remaining
+        isWar = true
+  
+        renderGame(player1Val, player2Val)
+      })
+      .catch(err => {
+        console.log(`error ${err}`)
+      })
+  }
 }
 
 // ⬇️ RENDER FUNCTIONS ⬇️
