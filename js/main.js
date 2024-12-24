@@ -60,7 +60,7 @@ function renderGame(player1Val, player2Val, remaining) {
 
   document.querySelector("#cards-left").innerText = `${remaining}`
 
-  if (data.remaining === 0) {
+  if (remaining === 0) {
     document.querySelector("#over").innerHTML = `<button>New Game</button>`
     document.querySelector("#deal").classList.add("no-click")
   }
