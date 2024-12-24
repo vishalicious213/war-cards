@@ -164,3 +164,18 @@ button:hover {
   justify-content: center;
   background: rgba(0, 128, 0, .6);
 }
+
+/* GAME OVER */
+
+#over {
+  flex-direction: column;
+  background: rgba(0, 128, 0, .9);
+}
+
+#over h2 {
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  background: darkgreen;
+  padding: .5rem 1.5rem;
+  border-radius: .25rem;
+}

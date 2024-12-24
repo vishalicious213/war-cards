@@ -142,7 +142,10 @@ function renderEndGame() {
   console.log("player 2 total", player2Score)
 
   document.querySelector("#over").classList.remove("hide")
-  document.querySelector("#over").innerHTML = `<button>New Game</button>`
+  document.querySelector("#over").innerHTML = `
+    ${player1Score > player2Score ? `<h2>Player 1 Wins WAR!</h2>` : `<h2>Player 2 Wins WAR!</h2>`}
+    <button>New Game</button>
+  `
 }
 
 // ⬇️ HELPER FUNCTIONS ⬇️
