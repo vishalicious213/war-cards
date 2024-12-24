@@ -50,13 +50,11 @@ function drawTwo(){
 // draw 4 cards for each player and play a round
 function drawWar(){
   if (remaining < 8) {
-    console.log("NOT ENOUGH CARDS", remaining)
     renderEndGame()
   } else {
     fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=8`)
       .then(res => res.json())
       .then(data => {
-        console.log(data.cards)
         let cards = data.cards.map(card => card.image)
         document.querySelector("#war").classList.add("hide")
         renderWarCards(cards)
@@ -87,8 +85,6 @@ function renderWarPrompt() {
 }
 
 function renderWarCards(cards) {
-  console.log(cards)
-
   document.querySelector("#player1-war").classList.remove("hide")
   document.querySelector("#player2-war").classList.remove("hide")
 
@@ -109,7 +105,6 @@ function renderWarCards(cards) {
 
 // use card values to render game updates per round
 function renderGame(player1Val, player2Val) {
-  console.log(isWar)
   if (player1Val > player2Val) {
     isWar ? player1Score += 8 : player1Score +=2
     document.querySelector("h2").innerText = `Player 1 Wins Round`
@@ -125,22 +120,12 @@ function renderGame(player1Val, player2Val) {
 
   document.querySelector("#cards-left").innerText = `${remaining}`
 
-  console.log("player 1", player1Score)
-  console.log("player 2", player2Score)
-  console.log("cards left", remaining)
-
   if (remaining === 0) {
-    // document.querySelector("#over").innerHTML = `<button>New Game</button>`
-    // document.querySelector("#deal").classList.add("no-click")
     renderEndGame()
   }
 }
 
 function renderEndGame() {
-  console.log("END GAME")
-  console.log("player 1 total", player1Score)
-  console.log("player 2 total", player2Score)
-
   document.querySelector("#over").classList.remove("hide")
   document.querySelector("#over").innerHTML = `
     ${player1Score > player2Score ? `<h2>Player 1 Wins WAR!</h2>` : `<h2>Player 2 Wins WAR!</h2>`}
