@@ -2,6 +2,7 @@ let deckId = ""
 let player1Score = 0
 let player2Score = 0
 let isWar = false
+let remaining = 52
 
 // ⬇️ EVENT LISTENERS ⬇️
 
@@ -32,13 +33,14 @@ function drawTwo(){
       
       let player1Val = convertToNum(data.cards[0].value)
       let player2Val = convertToNum(data.cards[1].value)
+      remaining = data.remaining
 
       if (isWar) {
         hideWarCards()
         isWar = false
       }
 
-      renderGame(player1Val, player2Val, data.remaining)
+      renderGame(player1Val, player2Val)
     })
     .catch(err => {
       console.log(`error ${err}`)
@@ -57,9 +59,10 @@ function drawWar(){
       
       let player1Val = convertToNum(data.cards[3].value)
       let player2Val = convertToNum(data.cards[7].value)
+      remaining = data.remaining
       isWar = true
 
-      renderGame(player1Val, player2Val, data.remaining)
+      renderGame(player1Val, player2Val)
     })
     .catch(err => {
       console.log(`error ${err}`)
@@ -100,7 +103,7 @@ function renderWarCards(cards) {
 }
 
 // use card values to render game updates per round
-function renderGame(player1Val, player2Val, remaining) {
+function renderGame(player1Val, player2Val) {
   console.log(isWar)
   if (player1Val > player2Val) {
     isWar ? player1Score += 4 : player1Score +=2
@@ -116,6 +119,10 @@ function renderGame(player1Val, player2Val, remaining) {
   }
 
   document.querySelector("#cards-left").innerText = `${remaining}`
+
+  console.log("player 1", player1Score)
+  console.log("player 2", player2Score)
+  console.log("cards left", remaining)
 
   if (remaining === 0) {
     document.querySelector("#over").innerHTML = `<button>New Game</button>`
