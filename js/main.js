@@ -51,6 +51,7 @@ function drawTwo(){
 function drawWar(){
   if (remaining < 8) {
     console.log("NOT ENOUGH CARDS", remaining)
+    renderEndGame()
   } else {
     fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=8`)
       .then(res => res.json())
@@ -129,9 +130,19 @@ function renderGame(player1Val, player2Val) {
   console.log("cards left", remaining)
 
   if (remaining === 0) {
-    document.querySelector("#over").innerHTML = `<button>New Game</button>`
-    document.querySelector("#deal").classList.add("no-click")
+    // document.querySelector("#over").innerHTML = `<button>New Game</button>`
+    // document.querySelector("#deal").classList.add("no-click")
+    renderEndGame()
   }
+}
+
+function renderEndGame() {
+  console.log("END GAME")
+  console.log("player 1 total", player1Score)
+  console.log("player 2 total", player2Score)
+
+  document.querySelector("#over").classList.remove("hide")
+  document.querySelector("#over").innerHTML = `<button>New Game</button>`
 }
 
 // ⬇️ HELPER FUNCTIONS ⬇️
