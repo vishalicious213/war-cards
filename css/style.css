@@ -174,8 +174,29 @@ button:hover {
 
 #over h2 {
   font-size: 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   background: darkgreen;
   padding: .5rem 1.5rem;
   border-radius: .25rem;
+}
+
+.totals {
+  /* outline: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-bottom: 3rem;;
+}
+
+.end-score {
+  border: 1px solid gold;
+  border-radius: .25rem;
+  background: darkgreen;
+  text-align: center;
+  padding: .5rem;
+  font-weight: 600;
+}
+
+.end-score p:first-child {
+  margin-bottom: .5rem;
 }
