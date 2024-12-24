@@ -26,7 +26,7 @@ function drawTwo(){
   fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
     .then(res => res.json())
     .then(data => {
-      renderCards(data.cards[0].image, data.cards[0].image)
+      renderCards(data.cards[0].image, data.cards[1].image)
       
       let player1Val = convertToNum(data.cards[0].value)
       let player2Val = convertToNum(data.cards[1].value)
@@ -56,7 +56,9 @@ function renderGame(player1Val, player2Val, remaining) {
     player2score += 2
     document.querySelector("h2").innerText = `Player 2 Wins`
     document.querySelector("#player2-cards").innerText = player2score
-  } else document.querySelector("h2").innerText = `Time for WAR!`
+  } else {
+    document.querySelector("h2").innerText = `Time for WAR!`
+  }
 
   document.querySelector("#cards-left").innerText = `${remaining}`
 
