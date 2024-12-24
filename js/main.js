@@ -27,18 +27,7 @@ function drawTwo(){
       let player1Val = convertToNum(data.cards[0].value)
       let player2Val = convertToNum(data.cards[1].value)
 
-      if (player1Val > player2Val) {
-        document.querySelector("h2").innerText = `Player 1 Wins`
-      } else if (player1Val < player2Val) {
-        document.querySelector("h2").innerText = `Player 2 Wins`
-      } else document.querySelector("h2").innerText = `Time for WAR!`
-
-      document.querySelector("#cards-left").innerText = `${data.remaining}`
-
-      if (data.remaining === 0) {
-        document.querySelector("#over").innerHTML = `<button>New Game</button>`
-        document.querySelector("#deal").classList.add("no-click")
-      }
+      renderGame(player1Val, player2Val)
     })
     .catch(err => {
       console.log(`error ${err}`)
@@ -50,6 +39,21 @@ function drawTwo(){
 function renderCards(player1card, player2card) {
   document.querySelector("#player1").src = player1card
   document.querySelector("#player2").src = player2card
+}
+
+function renderGame(player1Val, player2Val) {
+  if (player1Val > player2Val) {
+    document.querySelector("h2").innerText = `Player 1 Wins`
+  } else if (player1Val < player2Val) {
+    document.querySelector("h2").innerText = `Player 2 Wins`
+  } else document.querySelector("h2").innerText = `Time for WAR!`
+
+  document.querySelector("#cards-left").innerText = `${data.remaining}`
+
+  if (data.remaining === 0) {
+    document.querySelector("#over").innerHTML = `<button>New Game</button>`
+    document.querySelector("#deal").classList.add("no-click")
+  }
 }
 
 // ⬇️ HELPER FUNCTIONS ⬇️
