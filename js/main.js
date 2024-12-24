@@ -6,6 +6,7 @@ let player2score = 0
 
 document.querySelector('#deal').addEventListener('click', drawTwo)
 document.querySelector('#over').addEventListener('click', newGame)
+document.querySelector('#war-btn').addEventListener('click', drawWar)
 
 // ⬇️ EVENT HANDLERS ⬇️
 
@@ -45,6 +46,7 @@ function drawWar(){
     .then(data => {
       console.log(data.cards)
       let cards = data.cards.map(card => card.image)
+      document.querySelector("#war").classList.add("hide")
       renderWarCards(cards)
       
       // let player1Val = convertToNum(data.cards[0].value)
@@ -65,6 +67,10 @@ function renderCards(player1card, player2card) {
   document.querySelector("#player2").src = player2card
 }
 
+function renderWarPrompt() {
+  document.querySelector("#war").classList.remove("hide")
+}
+
 function renderWarCards(cards) {
   console.log(cards)
 
@@ -76,11 +82,11 @@ function renderWarCards(cards) {
   `
   
   document.querySelector("#player2-war").innerHTML = `
-  <img id="player2-war1" src=${cards[7]} alt="Playing card">
-  <img id="player2-war2" src="/img/blue.jpg" alt="Playing card">
-  <img id="player2-war3" src="/img/blue.jpg" alt="Playing card">
-  <img id="player2-war4" src="/img/blue.jpg" alt="Playing card">
-`
+    <img id="player2-war1" src=${cards[7]} alt="Playing card">
+    <img id="player2-war2" src="/img/blue.jpg" alt="Playing card">
+    <img id="player2-war3" src="/img/blue.jpg" alt="Playing card">
+    <img id="player2-war4" src="/img/blue.jpg" alt="Playing card">
+  `
 }
 
 // use card values to render game updates per round
@@ -95,7 +101,7 @@ function renderGame(player1Val, player2Val, remaining) {
     document.querySelector("#player2-cards").innerText = player2score
   } else {
     document.querySelector("h2").innerText = `Time for WAR!`
-    drawWar()
+    renderWarPrompt()
   }
 
   document.querySelector("#cards-left").innerText = `${remaining}`
