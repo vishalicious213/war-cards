@@ -1,4 +1,6 @@
 let deckId = ""
+let player1score = 0
+let player2score = 0
 
 // ⬇️ EVENT LISTENERS ⬇️
 
@@ -29,7 +31,7 @@ function drawTwo(){
       let player1Val = convertToNum(data.cards[0].value)
       let player2Val = convertToNum(data.cards[1].value)
 
-      renderGame(player1Val, player2Val)
+      renderGame(player1Val, player2Val, data.remaining)
     })
     .catch(err => {
       console.log(`error ${err}`)
@@ -45,14 +47,18 @@ function renderCards(player1card, player2card) {
 }
 
 // use card values to render game updates per round
-function renderGame(player1Val, player2Val) {
+function renderGame(player1Val, player2Val, remaining) {
   if (player1Val > player2Val) {
+    player1score += 2
     document.querySelector("h2").innerText = `Player 1 Wins`
+    document.querySelector("#player1-cards").innerText = player1score
   } else if (player1Val < player2Val) {
+    player2score += 2
     document.querySelector("h2").innerText = `Player 2 Wins`
+    document.querySelector("#player2-cards").innerText = player2score
   } else document.querySelector("h2").innerText = `Time for WAR!`
 
-  document.querySelector("#cards-left").innerText = `${data.remaining}`
+  document.querySelector("#cards-left").innerText = `${remaining}`
 
   if (data.remaining === 0) {
     document.querySelector("#over").innerHTML = `<button>New Game</button>`
