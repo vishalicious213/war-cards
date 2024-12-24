@@ -1,6 +1,6 @@
 let deckId = ""
-let player1score = 0
-let player2score = 0
+let player1Score = 0
+let player2Score = 0
 
 // ⬇️ EVENT LISTENERS ⬇️
 
@@ -32,7 +32,7 @@ function drawTwo(){
       let player1Val = convertToNum(data.cards[0].value)
       let player2Val = convertToNum(data.cards[1].value)
 
-      renderGame(player1Val, player2Val, data.remaining)
+      renderGame(player1Val, player2Val, data.remaining, false)
     })
     .catch(err => {
       console.log(`error ${err}`)
@@ -49,10 +49,10 @@ function drawWar(){
       document.querySelector("#war").classList.add("hide")
       renderWarCards(cards)
       
-      // let player1Val = convertToNum(data.cards[0].value)
-      // let player2Val = convertToNum(data.cards[1].value)
+      let player1Val = convertToNum(data.cards[3].value)
+      let player2Val = convertToNum(data.cards[7].value)
 
-      // renderGame(player1Val, player2Val, data.remaining)
+      renderGame(player1Val, player2Val, data.remaining, true)
     })
     .catch(err => {
       console.log(`error ${err}`)
@@ -90,15 +90,16 @@ function renderWarCards(cards) {
 }
 
 // use card values to render game updates per round
-function renderGame(player1Val, player2Val, remaining) {
+function renderGame(player1Val, player2Val, remaining, isWar) {
+  console.log(isWar)
   if (player1Val > player2Val) {
-    player1score += 2
+    isWar ? player1Score += 4 : player1Score +=2
     document.querySelector("h2").innerText = `Player 1 Wins`
-    document.querySelector("#player1-cards").innerText = player1score
+    document.querySelector("#player1-cards").innerText = player1Score
   } else if (player1Val < player2Val) {
-    player2score += 2
+    isWar ? player2Score += 4 : player2Score +=2
     document.querySelector("h2").innerText = `Player 2 Wins`
-    document.querySelector("#player2-cards").innerText = player2score
+    document.querySelector("#player2-cards").innerText = player2Score
   } else {
     document.querySelector("h2").innerText = `Time for WAR!`
     renderWarPrompt()
