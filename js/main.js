@@ -112,11 +112,11 @@ function renderGame(player1Val, player2Val) {
   console.log(isWar)
   if (player1Val > player2Val) {
     isWar ? player1Score += 8 : player1Score +=2
-    document.querySelector("h2").innerText = `Player 1 Wins`
+    document.querySelector("h2").innerText = `Player 1 Wins Round`
     document.querySelector("#player1-cards").innerText = player1Score
   } else if (player1Val < player2Val) {
     isWar ? player2Score += 8 : player2Score +=2
-    document.querySelector("h2").innerText = `Player 2 Wins`
+    document.querySelector("h2").innerText = `Player 2 Wins Round`
     document.querySelector("#player2-cards").innerText = player2Score
   } else {
     document.querySelector("h2").innerText = `Time for WAR!`
