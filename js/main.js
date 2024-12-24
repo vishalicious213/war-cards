@@ -1,6 +1,7 @@
 let deckId = ""
 let player1Score = 0
 let player2Score = 0
+let isWar = false
 
 // ⬇️ EVENT LISTENERS ⬇️
 
@@ -32,7 +33,12 @@ function drawTwo(){
       let player1Val = convertToNum(data.cards[0].value)
       let player2Val = convertToNum(data.cards[1].value)
 
-      renderGame(player1Val, player2Val, data.remaining, false)
+      if (isWar) {
+        hideWarCards()
+        isWar = false
+      }
+
+      renderGame(player1Val, player2Val, data.remaining)
     })
     .catch(err => {
       console.log(`error ${err}`)
@@ -51,8 +57,9 @@ function drawWar(){
       
       let player1Val = convertToNum(data.cards[3].value)
       let player2Val = convertToNum(data.cards[7].value)
+      isWar = true
 
-      renderGame(player1Val, player2Val, data.remaining, true)
+      renderGame(player1Val, player2Val, data.remaining)
     })
     .catch(err => {
       console.log(`error ${err}`)
@@ -74,6 +81,9 @@ function renderWarPrompt() {
 function renderWarCards(cards) {
   console.log(cards)
 
+  document.querySelector("#player1-war").classList.remove("hide")
+  document.querySelector("#player2-war").classList.remove("hide")
+
   document.querySelector("#player1-war").innerHTML = `
     <img id="player1-war1" src=${cards[3]} alt="Playing card">
     <img id="player1-war2" src="/img/red.jpg" alt="Playing card">
@@ -90,7 +100,7 @@ function renderWarCards(cards) {
 }
 
 // use card values to render game updates per round
-function renderGame(player1Val, player2Val, remaining, isWar) {
+function renderGame(player1Val, player2Val, remaining) {
   console.log(isWar)
   if (player1Val > player2Val) {
     isWar ? player1Score += 4 : player1Score +=2
@@ -114,6 +124,11 @@ function renderGame(player1Val, player2Val, remaining, isWar) {
 }
 
 // ⬇️ HELPER FUNCTIONS ⬇️
+
+function hideWarCards() {
+  document.querySelector("#player1-war").classList.add("hide")
+  document.querySelector("#player2-war").classList.add("hide")
+}
 
 function convertToNum(val) {
   if (val === "ACE") {
