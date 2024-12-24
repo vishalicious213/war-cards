@@ -68,10 +68,11 @@ span {
   align-items: center;
   width: 80%;
   max-width: 225px;
-  margin-top: 2rem;
+  margin: 2.5rem 0;
   border: 1px solid #ffd900a1;
   border-radius: .5rem;
   padding: 1rem .5rem;
+  position: relative;
 }
 
 .no-click {
@@ -84,4 +85,59 @@ span {
 
 .player-info span {
   display: block;
+}
+
+/* WAR CARDS */
+
+.war-cards {
+  position: absolute;
+  display: flex;
+}
+
+#player1-war4 {
+  z-index: 1;
+  position: absolute;
+  right: -4.5rem;
+}
+
+#player1-war3 {
+  z-index: 2;
+  position: absolute;
+  right: -6rem;
+}
+
+#player1-war2 {
+  z-index: 3;
+  position: absolute;
+  right: -7.5rem;
+}
+
+#player1-war1 {
+  z-index: 4;
+  position: absolute;
+  right: -9rem;
+}
+
+#player2-war4 {
+  z-index: 1;
+  position: absolute;
+  left: -4.5rem;
+}
+
+#player2-war3 {
+  z-index: 2;
+  position: absolute;
+  left: -6rem;
+}
+
+#player2-war2 {
+  z-index: 3;
+  position: absolute;
+  left: -7.5rem;
+}
+
+#player2-war1 {
+  z-index: 4;
+  position: absolute;
+  left: -9rem;
 }
