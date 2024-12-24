@@ -16,6 +16,7 @@ body {
   background-position: center;
   background-attachment: fixed;
   font-family: "Exo 2", sans-serif;
+  position: relative;
 }
 
 h1, h2, h3 {
@@ -29,6 +30,12 @@ h2 {
 img {
   width: 100px;
 }
+
+span {
+  font-weight: 600;
+}
+
+/* CONTROLS */
 
 #controls {
   display: flex;
@@ -58,9 +65,11 @@ button:hover {
   background: #fdf4be;
 }
 
-span {
-  font-weight: 600;
+.no-click {
+  pointer-events: none;
 }
+
+/* PLAYER AREAS */
 
 .player {
   display: flex;
@@ -73,10 +82,6 @@ span {
   border-radius: .5rem;
   padding: 1rem .5rem;
   position: relative;
-}
-
-.no-click {
-  pointer-events: none;
 }
 
 .player-info {
@@ -140,4 +145,13 @@ span {
   z-index: 4;
   position: absolute;
   left: -9rem;
+}
+
+/* WAR BANNER */
+
+.war {
+  outline: 1px solid red;
+  height: 1rem;
+  position: absolute;
+  top: 50%;
 }
